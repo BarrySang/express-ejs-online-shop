@@ -1,0 +1,28 @@
+body {
+    background-color: rgb(195, 195, 204);
+    padding: 10px;
+}
+
+.header-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 10px;
+    background-color: rgb(164, 164, 173);
+    padding: 10px;
+}
+
+.header-config {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.username-cart-container {
+    display: grid;
+    grid-template-rows: repeat(2);
+    background-color: rgba(30, 51, 30, 0.541);
+}
+
+.header-config-col {
+    align-items: center;
+    justify-content: center;
+}
