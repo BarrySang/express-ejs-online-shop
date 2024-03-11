@@ -26,3 +26,18 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+.footer-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.contact {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.contact-icon {
+    margin-top: 15px;
+    margin-right: 5px;
+}
