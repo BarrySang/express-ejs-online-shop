@@ -36,7 +36,18 @@ app.get('/about', (req, res) => {
     res.render('index', {sentData})
 })
 
-// @TODO - move this function to 'lib' folder
+// product
+app.get('/product/:productId', (req, res) => {
+    sentData = {
+        ...data,
+        product: getProduct(products, req.params.productId),
+        content: 'product'
+    }
+    console.log(sentData)
+    res.render('index', {sentData})
+})
+
+// @TODO - move this functions to 'lib' folder
 /**
  * 
  * @param {number} numberOfProducts 
@@ -47,7 +58,7 @@ app.get('/about', (req, res) => {
     for (let i = 0; i < numberOfProducts; i++) {
         const product = {
             id: products.length ? products[products.length - 1].id + 1 : 1,
-            productName: products.length ? 'product'+(products[products.length - 1].id + 1) : 'product1',
+            productName: products.length ? 'product '+(products[products.length - 1].id + 1) : 'product 1',
             price: Math.floor(Math.random() * 10000)+500,
             inStock: Math.floor(Math.random() * 200),
         }
@@ -55,6 +66,17 @@ app.get('/about', (req, res) => {
     }
 
     return products
+}
+
+/**
+ * 
+ * @param {array} products 
+ * @param {string} productId 
+ * @returns object or undefined
+ */
+function getProduct(products = [], productId) {
+    let results = products.filter(product => parseInt(productId) === product.id)
+    return results[0]
 }
 
 app.listen(port, () => console.log(`listening on port ${port}`))
