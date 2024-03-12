@@ -1,4 +1,22 @@
 <div>
-    <h1>Section</h1>
-    <p><%= data %></p>
+    <h1>Products</h1>
+    <!-- conditionally display section content based on the route -->
+    <!-- display products -->
+    <% if (sentData.content === 'products') { %>
+        <div class="products">
+            <% sentData.products.forEach(function(product) { %>
+                <%- include('product', {product: product}) %>
+            <% }) %>
+        </div>
+    <% } %>
+
+    <!-- display about content -->
+    <% if (sentData.content === 'about') { %>
+        <div class="about">
+            <h1>About page</h1>
+        </div>
+    <% } %>
+
+
+    
 </div>

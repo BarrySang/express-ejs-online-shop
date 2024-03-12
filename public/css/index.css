@@ -3,7 +3,7 @@ body {
     padding: 10px;
 }
 
-.header-container {
+.header-top {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     column-gap: 10px;
@@ -19,7 +19,6 @@ body {
 .username-cart-container {
     display: grid;
     grid-template-rows: repeat(2);
-    background-color: rgba(30, 51, 30, 0.541);
 }
 
 .header-config-col {
@@ -40,4 +39,31 @@ body {
 .contact-icon {
     margin-top: 15px;
     margin-right: 5px;
+}
+
+.products {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.product {
+    margin: 10px;
+    background-color: grey;
+    padding: 10px;
+}
+
+.nav-item {
+    display: inline-block;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-decoration: none;
+}
+
+.nav-link {
+    text-decoration: none;
+    color: black;
+}
+
+.navbar {
+    text-align: center;
 }
