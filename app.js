@@ -1,17 +1,20 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 
 const app = express()
 const port = process.env.PORT || 5000
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
+app.use(bodyParser.json())
 
 const products = generateProducts(10)
-console.log(products)
+const cart = []
 
 const data = {
     products: [],
-    content: ''
+    content: '',
+    cart: [1, 2, 3]
 }
 
 /**
@@ -46,6 +49,45 @@ app.get('/product/:productId', (req, res) => {
     console.log(sentData)
     res.render('index', {sentData})
 })
+
+// product
+// add to cart
+app.post('/product/addToCart', (req, res) => {
+    // get data from the request
+    // console.log(req.body)
+    const {userId, productId} = req.body
+
+    // store the data
+    // check if the user's cart already exists
+    const cartEntry = getCartEntry(userId)
+    if (cartEntry) {
+        // add the item to the user's cart
+        cartEntry.products.push(productId)
+    } else {
+        cart.push({
+            id: cart.length ? cart[cart.length - 1].id + 1 : 1,
+            userId: userId,
+            products: [
+                productId
+            ]
+        })
+    }
+
+    console.log(cart)
+})
+
+// get cart items
+app.get('/cart/:userId', (req, res) => {
+    const userId = req.params.userId
+    const cartEntry = getCartEntry(parseInt(userId))
+    res.send(cartEntry)
+})
+
+
+// get a user's cart entry
+function getCartEntry(userId) {
+    return cart.find(cartEntry => cartEntry.userId === userId)
+}
 
 // @TODO - move this functions to 'lib' folder
 /**
